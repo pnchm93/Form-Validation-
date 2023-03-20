@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body{
+            background-color: cadetblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        #form{
+            /* margin-top: 150px;
+            margin-left: auto;
+            margin-right: auto; */
+            background-color: white;
+            width: 300px;
+            height: 300px;
+        }
+        #id1{
+            text-align: center;
+        }
+        #username{
+            height: 25px;
+            margin-bottom: 10px;
+        }
+        #password{
+            height: 25px;
+            margin-bottom: 10px;
+            
+        }
+        #Submit{
+            width: 80px;
+            height: 30px;
+            text-decoration: aliceblue;
+            cursor: pointer;
+        }
+        h2{
+            text-align: center;
+        }
+        .error{
+            color: red;
+            margin-top: 0px;
+            margin-left: 70px;
+            text-align: left;
+        }
+        
+    </style>
+</head>
+<body>
+        <div id="form">
+            <h2>User Login</h2>
+            <form id="id1" action="" onsubmit="return isValid()"> 
+                <input type="text" placeholder="username" id="username"/>
+                <p id="usererror" class="error"></p>
+                <input type="password" placeholder="password" id="password"/><br>
+                <p id="passerror" class="error"></p>
+                <button id="Submit" onclick="fun()">Submit</button>
+            </form>
+        </div>
+        <script>
+            var username=document.getElementById("username");
+            var password=document.getElementById('password')
+            var usererror=document.getElementById('usererror');
+            function isValid(){
+                var pass=false,user=false;
+                if(username.value=="" ){
+                    document.getElementById('usererror').innerHTML='User Name is Empty';
+                    user=false;
+                }
+                else if(username.value.length < 3){
+                    document.getElementById('usererror').innerHTML='User Name Require min 3 char'
+                    user=false;
+                }
+                else{
+                    document.getElementById('usererror').innerHTML='';
+                    user=true;
+                }
+                if(password.value=="" ){
+                    document.getElementById('passerror').innerHTML='Password is Empty';
+                    pass=false;
+                }
+                else if(password.value.length<7){
+                    document.getElementById('passerror').innerHTML='Password Needed Atleast 7 characters';
+                    pass=false;
+                }
+                else {
+                    document.getElementById('passerror').innerHTML=''
+                    pass=true;
+                }
+                if(pass==true && user==true){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            var form=document.getElementById("id1");
+            var submit=document.getElementById("Submit");
+            submit.addEventListener('mouseover',function(){
+                submit.style.background='hsl(84, 92%, 67%)';
+            })
+            submit.addEventListener('mouseout',function(){
+                submit.style.background='white';
+            })
+        </script>
+</body>
+</html>
